@@ -45,6 +45,10 @@ class Room {
 
     getItemByName(name) {
 
+        let ret = this.items.find(item => item.name === name);
+
+        return(ret);
+
         // Fill this in
     }
 

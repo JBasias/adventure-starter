@@ -1,3 +1,6 @@
+const { Food } = require("./food");
+//const { Food } = require("./food");
+
 class Player {
 
     constructor(name, startingRoom) {
@@ -33,21 +36,103 @@ class Player {
 
     takeItem(itemName) {
 
+
+        let idx = -1;
+
+        for(let i=0;i<this.currentRoom.items.length ; i++)
+        {
+            if(itemName == this.currentRoom.items[i].name)
+            {
+                idx=i;
+                this.items.push(this.currentRoom.items[i]);
+                break;
+            }
+
+        }
+
+        //console.log("hello the advarks!!!!! : " + idx);
+        if(idx === -1) return
+
+        //let ret=[];
+
+        this.currentRoom.items.splice(idx,1);
+        //this.items.push(itemName);
         // Fill this in
 
     }
 
     dropItem(itemName) {
 
+        let idx = -1;
+
+        for(let i=0;i<this.items.length ; i++)
+        {
+            if(itemName == this.items[i].name)
+            {
+                idx=i;
+                this.currentRoom.items.push(this.items[i]);
+                break;
+            }
+
+        }
+
+        //console.log("hello the advarks!!!!! : " + idx);
+        if(idx === -1) return
+
+        //let ret=[];
+
+        this.items.splice(idx,1);
+        //this.items.push(itemName);
         // Fill this in
     }
 
     eatItem(itemName) {
-        // Fill this in
+
+
+
+        let idx = -1;
+
+        for(let i=0;i<this.items.length ; i++)
+        {
+            if(itemName == this.items[i].name && this.items[i] instanceof Food)
+            {
+                idx=i;
+                //this.currentRoom.items.push(this.items[i]);
+                break;
+            }
+
+        }
+
+        if(idx === -1) return
+
+        //let ret=[];
+
+        this.items.splice(idx,1);
+
+
 
     }
 
     getItemByName(name) {
+
+
+
+        let ret = this.items.find(item => item.name === name);
+
+        /*
+        for(let i=0;i<this.items.length;i++)
+        {
+            if(this.items[i].name === name)
+            {
+                return(this.items[i]);
+            }
+        }*/
+
+
+
+        return(ret);
+
+
 
         // Fill this in
     }
